@@ -22,7 +22,7 @@ export default function Page() {
             <WeatherCode />
             <City />
           </div>
-          <div className="grid grid-cols-2 gap-4 p-10 mt-8">
+          <div className="grid lg:grid-cols-2 gap-4 p-10 mt-8">
             <Temperature />
             <Wind />
           </div>
