@@ -1,8 +1,8 @@
 'use client'
 
 import { useContext } from "react";
-import { WeatherContext } from "@/context/WeatherContext";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { WeatherContext, processWeatherData } from "@/context/WeatherContext";
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
     Card,
@@ -36,7 +36,7 @@ export default function Wind() {
                 {weatherData ? (
                     <ChartContainer config={chartConfig}>
                         <BarChart
-                            data={weatherData}
+                            data={processWeatherData(weatherData)}
                             margin={{
                                 left: 12,
                                 right: 12,
@@ -52,6 +52,7 @@ export default function Wind() {
                                 dataKey="wind_speed_10m"
                                 fill="var(--color-desktop)"
                             />
+                            <YAxis dataKey={"wind_speed_10m"} tickFormatter={(value) => value + ' ' + weatherData.hourly_units.wind_speed_10m} />
                         </BarChart>
                     </ChartContainer>
                 ) : (

@@ -4,7 +4,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const WeatherContext = createContext();
 
-const processWeatherData = (data) => {
+export const processWeatherData = (data) => {
     return data.hourly.time.map((time, index) => ({
         time, // Use this as the X axis key
         temperature_2m: data.hourly.temperature_2m[index], // This is the Y axis key for temperature
@@ -36,11 +36,11 @@ export function WeatherProvider({ children }) {
     useEffect(() => {
         if (position.latitude && position.longitude) {
             fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
+                `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&current=weather_code&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
             )
                 .then((response) => response.json())
                 .then((data) => {
-                    setWeatherData(processWeatherData(data));
+                    setWeatherData(data);
                     console.log("Weather data: ", data);
                 })
                 .catch((error) => {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext } from "react";
-import { WeatherContext } from "@/context/WeatherContext";
+import { WeatherContext, processWeatherData } from "@/context/WeatherContext";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 
 import {
@@ -36,7 +36,7 @@ export default function Temperature() {
                 {weatherData ? (
                     <ChartContainer config={chartConfig}>
                         <AreaChart
-                            data={weatherData}
+                            data={processWeatherData(weatherData)}
                             margin={{
                                 left: 12,
                                 right: 12,
@@ -68,7 +68,7 @@ export default function Temperature() {
                                 fill="url(#fillDesktop)"
                                 stroke="var(--color-desktop)"
                             />
-                            <YAxis dataKey={"temperature_2m"} />
+                            <YAxis dataKey={"temperature_2m"} tickFormatter={(value) => value + weatherData.hourly_units.temperature_2m} />
                         </AreaChart>
                     </ChartContainer>
                 ) : (
