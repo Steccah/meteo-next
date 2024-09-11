@@ -36,7 +36,7 @@ export function WeatherProvider({ children }) {
     useEffect(() => {
         if (position.latitude && position.longitude) {
             fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&current=weather_code&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
+                `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&current=weather_code,temperature_2m&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
             )
                 .then((response) => response.json())
                 .then((data) => {
