@@ -7,6 +7,7 @@ import WeatherCode from "@/components/WeatherCode";
 import City from "@/components/City";
 import Image from "next/image";
 import TemperatureIcon from "@/components/TemperatureIcon";
+import WindIcon from "@/components/WindIcon";
 // import Cloudiness from "@/components/Cloudiness";
 
 export default function Page() {
@@ -30,8 +31,12 @@ export default function Page() {
             </div>
             <div className="grid grid-cols-1 gap-4 p-0 mt-8">
               <Temperature />
-              <Wind />
+              {/* <Wind /> */}
             </div>
+            <div className="flex justify-center items-center mt-8">
+              <WindIcon />
+            </div>
+
           </WeatherProvider>
         </section>
       </div>
