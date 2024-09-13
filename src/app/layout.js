@@ -25,10 +25,10 @@ export default function RootLayout({ children }) {
       <head>
         <script defer src="https://t.stecca.dev/script.js" data-website-id="07787f12-bf4b-4a1b-b328-ead15b210688"></script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system">
+          defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>
