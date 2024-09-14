@@ -8,7 +8,6 @@ export default function City() {
     const [city, setCity] = useState("");
 
     if (weatherData) {
-        console.log("https://geocode.xyz/" + weatherData.latitude + "," + weatherData.longitude + "?json=1");
         fetch("https://geocode.xyz/" + weatherData.latitude + "," + weatherData.longitude + "?json=1")
             .then((response) => response.json())
             .then((data) => {

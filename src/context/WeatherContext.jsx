@@ -33,20 +33,28 @@ export function WeatherProvider({ children }) {
         }
     }, []);
 
-    useEffect(() => {
+    async function fetchWeatherData() {
         if (position.latitude && position.longitude) {
-            fetch(
-                `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
-            )
-                .then((response) => response.json())
-                .then((data) => {
-                    setWeatherData(data);
-                    console.log("Weather data: ", data);
-                })
-                .catch((error) => {
-                    console.error("Error fetching weather data: ", error);
-                });
+            try {
+                const response = await fetch(
+                    `https://api.open-meteo.com/v1/forecast?latitude=${position.latitude}&longitude=${position.longitude}&current=weather_code,temperature_2m,wind_speed_10m,wind_direction_10m&hourly=temperature_2m,apparent_temperature,rain,wind_speed_10m`
+                );
+                const data = await response.json();
+                setWeatherData(data);
+            } catch (error) {
+                console.error("Error fetching weather data: ", error);
+            }
         }
+    }
+
+    useEffect(() => {
+        fetchWeatherData();
+        const interval = setInterval(() => {
+            fetchWeatherData();
+            console.info("Weather data refreshed!");
+        }, 300000); // 5 minutes in milliseconds
+
+        return () => clearInterval(interval);
     }, [position]);
 
     return (

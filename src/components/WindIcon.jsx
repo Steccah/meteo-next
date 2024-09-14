@@ -10,8 +10,6 @@ export default function WindIcon() {
     if (!weatherData) {
         return <Skeleton className="ml-6 w-36 h-12 bg-white" />;
     } else {
-        console.log(weatherData.current);
-
         return (
             <div className="flex flex-col justify-center">
                 <div className="w-32 h-32">

@@ -11,7 +11,6 @@ export default function BackDrop() {
 
     useEffect(() => {
         if (weatherData) {
-            console.log("Weather code: ", weatherData.current.weather_code);
             switch (weatherData.current.weather_code) {
                 // switch (77) {
                 case 0:  	            // Clear sky

@@ -11,7 +11,6 @@ export default function Temperature() {
     if (!weatherData) {
         return <Skeleton className="w-12 h-12 bg-white" />;
     } else {
-        console.log("Weather code: ", weatherData.current.weather_code);
         switch (weatherData.current.weather_code) {
             case 0:  	            // Clear sky
                 return <Sun size={48} />;
